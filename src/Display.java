@@ -28,8 +28,8 @@ public class Display extends Application {
 		grid.setPadding(new Insets(50, 50, 50, 50));
 
 		ArrayList<Box> boxes = new ArrayList<Box>();
-		for (int i = 0; i < 13; i++) {
-			Box h = new Box(55, 100, 0);
+		for (int i = 0; i < 30; i++) {
+			Box h = new Box(49.75, 62.75, 0);
 			boxes.add(h);
 		}
 		Button btn = new Button("New Game");
@@ -74,9 +74,14 @@ public class Display extends Application {
 					e1.printStackTrace();
 				}
 				int num = 0;
+				int row = 1;
+				int col = 1;
+				int c = 0;
 				for (int i = 7; i > 0; i--) {
 					HBox piles = new HBox(10);
+					piles.getChildren().clear();
 					for (int j = 7; j > 0; j--) {
+
 						if (j == i) { 
 							//flip
 							ImageView imv = new ImageView();
@@ -84,9 +89,12 @@ public class Display extends Application {
 							piles.getChildren().add(imv);
 							System.out.print("x");
 							num++;
+							col++;
 						} else if( i < j) {
 							// empty
-							System.out.print(" ");
+							piles.getChildren().add(boxes.get(c));
+							System.out.print("c");
+							c++;
 						} else if( i > j) {
 							//show back
 							ImageView imv = new ImageView();
@@ -95,9 +103,12 @@ public class Display extends Application {
 							piles.getChildren().add(imv);
 							System.out.print("o");
 							num++;
+							col++;
 						}
 					}
-					grid.add(piles, 1, 1);
+					grid.setVgap(0.25);
+					grid.add(piles, row, col);
+
 					System.out.println();
 				}
 			}
