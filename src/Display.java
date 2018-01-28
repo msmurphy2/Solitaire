@@ -34,7 +34,6 @@ public class Display extends Application {
 		}
 		Button btn = new Button("New Game");
 		HBox hbBtn = new HBox(10);
-		HBox piles = new HBox(10);
 		HBox deck = new HBox(10);
 		HBox stacks = new HBox(10);
 
@@ -74,17 +73,36 @@ public class Display extends Application {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-				piles.getChildren().clear();
-				for (int i = 0; i < 7; i++) {
-
-					ImageView imv = new ImageView();
-					imv.setImage(d.hand.get(i));
-					piles.getChildren().add(imv);
+				int num = 0;
+				for (int i = 7; i > 0; i--) {
+					HBox piles = new HBox(10);
+					for (int j = 7; j > 0; j--) {
+						if (j == i) { 
+							//flip
+							ImageView imv = new ImageView();
+							imv.setImage(d.hand.get(num));
+							piles.getChildren().add(imv);
+							System.out.print("x");
+							num++;
+						} else if( i < j) {
+							// empty
+							System.out.print(" ");
+						} else if( i > j) {
+							//show back
+							ImageView imv = new ImageView();
+							Image backCard = new Image("Cards/back.jpg", 49.75, 62.75, false, false);
+							imv.setImage(backCard);
+							piles.getChildren().add(imv);
+							System.out.print("o");
+							num++;
+						}
+					}
+					grid.add(piles, 1, 1);
+					System.out.println();
 				}
 			}
 		});
 
-		grid.add(piles, 1, 1);
 		Scene scene = new Scene(grid, 800, 700);
 		primaryStage.setScene(scene);
 

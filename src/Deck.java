@@ -96,7 +96,7 @@ public class Deck {
 
 	ArrayList<Image> deal(ArrayList<Image> d) {// get hand from deck
 		ArrayList<Image> h = new ArrayList<Image>();
-		for(int i = 0; i < 27; i++) {
+		for(int i = 0; i < 28; i++) {
 			h.add(i, d.get(i));
 		}
 		return h;
