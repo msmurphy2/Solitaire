@@ -1,13 +1,11 @@
+import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.lang.*;
-import javax.imageio.ImageIO;
+import java.util.HashMap;
 
-import java.awt.image.BufferedImage;
-import java.io.*;
-import javafx.scene.image;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
+import javafx.scene.shape.Rectangle;
 
 public class Deck {
 
@@ -27,6 +25,8 @@ public class Deck {
 		hand = deal(deck);
 		card = getCard(hand);
 	}
+
+	
 
 	static ArrayList<Image> createHearts(boolean shuf) throws IOException {
 
@@ -96,7 +96,7 @@ public class Deck {
 
 	ArrayList<Image> deal(ArrayList<Image> d) {// get hand from deck
 		ArrayList<Image> h = new ArrayList<Image>();
-		for(int i = 0; i < 28; i++) {
+		for (int i = 0; i < 28; i++) {
 			h.add(i, d.get(i));
 		}
 		return h;
