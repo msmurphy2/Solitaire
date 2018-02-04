@@ -20,15 +20,15 @@ import javafx.stage.Stage;
 public class Display extends Application {
 
 	public void start(Stage primaryStage) {
-
+		
 		primaryStage.setTitle("Solitaire");
 		Pane grid = new Pane();
 		grid.setStyle("-fx-background-color: #3ECAE8;");
 		ArrayList<Rectangle> boxes = new ArrayList<Rectangle>();
 		for (int i = 0; i < 30; i++) {
 			Rectangle h = new Rectangle();
-			h.setWidth(49.75);
-			h.setHeight(62.75);
+			h.setWidth(Deck.WIDTH);
+			h.setHeight(Deck.HEIGHT);
 			h.setFill(Color.rgb(62,202,232));
 			boxes.add(h);
 		}
@@ -72,36 +72,32 @@ public class Display extends Application {
 					e1.printStackTrace();
 				}
 				int num = 0;
+				int row;
 				int col = 100;
-				int c = 0;
 				for (int i = 7; i > 0; i--) {
 					HBox piles = new HBox(10);
+					row = 100;
 					piles.getChildren().clear();
 					for (int j = 7; j > 0; j--) {
-
-						if( i < j) {
-							// empty
-							piles.getChildren().add(boxes.get(c));
-							c++;
-						} else if( i > j) {
+						if( i > j) {
 							//show back
 							ImageView imv = new ImageView();
-							Image backCard = new Image("Cards/back.jpg", 49.75, 62.75, false, false);
+							Image backCard = new Image("Cards/back.jpg", Deck.WIDTH, Deck.HEIGHT, false, false);
 							imv.setImage(backCard);
-							piles.getChildren().add(imv);
+							imv.relocate(row, col);
+							grid.getChildren().add(imv);
 							num++;
 						} else if (j == i) { 
 							//flip
 							ImageView imv = new ImageView();
 							imv.setImage(d.hand.get(num));
-							piles.getChildren().add(imv);
+							imv.relocate(row, col);
+							grid.getChildren().add(imv);
 							num++;
 						} 
+						row = row+60;
 					}
-					piles.relocate(100, col);
 					col=col+25;
-					grid.getChildren().addAll(piles);
-					System.out.println();
 				}
 			}
 		});
@@ -115,4 +111,3 @@ public class Display extends Application {
 		launch(args);
 	}
 }
-
