@@ -12,9 +12,9 @@ public class Deck {
 	// within a deck, there are 4 suites of 13 cards each.
 	// suite 1 = hearts, 2 = clubs, 3 = diamonds, 4 = spades
 
-	ArrayList<Image> deck = new ArrayList<Image>(51);
-	ArrayList<Image> hand = new ArrayList<Image>(6);
-	Image card;
+	ArrayList<Image> deck = new ArrayList<Image>();
+	ArrayList<Image> hand = new ArrayList<Image>();
+	//Image card;
 	public static final double WIDTH = 49.75;
 	public static final double HEIGHT = 62.75;
 
@@ -25,21 +25,18 @@ public class Deck {
 	public Deck() throws IOException {
 		deck = createDeck();
 		hand = deal(deck);
-		card = getCard(hand);
+		// card = getCard(hand);
 	}
 
-	
-
 	static ArrayList<Image> createHearts(boolean shuf) throws IOException {
-
 		ArrayList<Image> hearts = new ArrayList<Image>();
-		hearts.add(new Image("Cards/ha.jpg", WIDTH, HEIGHT, false, false));
+		hearts.add(new Image("Cards/ca.jpg", WIDTH, HEIGHT, false, false));
 		for (int i = 2; i < 11; i++) {
-			hearts.add(new Image("Cards/h" + i + ".jpg", WIDTH, HEIGHT, false, false));
+			hearts.add(new Image("Cards/c" + i + ".jpg", WIDTH, HEIGHT, false, false));
 		}
-		hearts.add(new Image("Cards/hj.jpg", WIDTH, HEIGHT, false, false));
-		hearts.add(new Image("Cards/hq.jpg", WIDTH, HEIGHT, false, false));
-		hearts.add(new Image("Cards/hk.jpg", WIDTH, HEIGHT, false, false));
+		hearts.add(new Image("Cards/cj.jpg", WIDTH, HEIGHT, false, false));
+		hearts.add(new Image("Cards/cq.jpg", WIDTH, HEIGHT, false, false));
+		hearts.add(new Image("Cards/ck.jpg", WIDTH, HEIGHT, false, false));
 		if (shuf = true)
 			java.util.Collections.shuffle(hearts);
 		return hearts;
@@ -103,9 +100,8 @@ public class Deck {
 		}
 		return h;
 	}
-
-	Image getCard(ArrayList<Image> h) {// get card from hand
-		Image c = h.get(0);
-		return c;
-	}
+	/*
+	 * not needed yet?? Image getCard(ArrayList<Image> h) {// get card from hand
+	 * Image c = h.get(0); return c; }
+	 */
 }
